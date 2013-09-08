@@ -2,29 +2,29 @@
 
 
 template<class T>
-class Node
-{
-public:
-	Node(const T& iData)
-	{
-		data = iData;
-		right = NULL;
-		left = NULL;
-		parent = NULL;
-	}
-
-	Node* right;
-	Node* left;
-	Node* parent;
-	T data;
-};
-
-
-template<class T>
 class BST
 {
 
 public:
+
+	template<class U>
+	class Node
+	{
+	public:
+		Node(const U& iData)
+		{
+			data = iData;
+			right = NULL;
+			left = NULL;
+			parent = NULL;
+		}
+
+		Node* right;
+		Node* left;
+		Node* parent;
+		U data;
+	};
+
 	BST():root(NULL){};
 	~BST();
 
@@ -37,15 +37,13 @@ public:
 	Node<T>* root;
 
 private:
-
-
 	Node<T>* findClosest(const T& iData,  Node<T>* iRoot) const;
 	void deleteTree(Node<T>* iRoot);
 };
 
 
 template<class T>
-Node<T>* BST<T>::findClosest(const T& iData, Node<T>* iRoot) const
+BST<T>::Node<T>* BST<T>::findClosest(const T& iData, BST<T>::Node<T>* iRoot) const
 {
 	if (!iRoot)
 	{
@@ -81,7 +79,7 @@ Node<T>* BST<T>::findClosest(const T& iData, Node<T>* iRoot) const
 }
 
 template<class T>
-Node<T>* BST<T>::findNode(const T& iData) const
+BST<T>::Node<T>* BST<T>::findNode(const T& iData) const
 {
 	if (!iData)
 		return 0;
@@ -101,7 +99,7 @@ Node<T>* BST<T>::findNode(const T& iData) const
 }
 
 template<class T>
-Node<T>* BST<T>::insertNode(const T& iData)
+BST<T>::Node<T>* BST<T>::insertNode(const T& iData)
 {
 	Node<T>* newParent = findClosest(iData, root);
 
@@ -138,7 +136,7 @@ Node<T>* BST<T>::insertNode(const T& iData)
 }
 
 template<class T>
-bool BST<T>::deleteNode(Node<T>* iNode)
+bool BST<T>::deleteNode(BST<T>::Node<T>* iNode)
 {
 	if (!iNode)
 	{
@@ -252,7 +250,7 @@ bool BST<T>::deleteNode(const T& iData)
 }
 
 template<class T>
-void BST<T>::deleteTree(Node<T>* iNode)
+void BST<T>::deleteTree(BST<T>::Node<T>* iNode)
 {
 	if (!iNode)
 	{
@@ -275,7 +273,7 @@ void BST<T>::deleteTree(Node<T>* iNode)
 }
 
 template<class T>
-int BST<T>::traverseTree(Node<T>* iNode) const
+int BST<T>::traverseTree(BST<T>::Node<T>* iNode) const
 {
 	if (iNode == root)
 	{
@@ -287,6 +285,8 @@ int BST<T>::traverseTree(Node<T>* iNode) const
 	numNodes += traverseTree(iNode->left);
 	std::cout << iNode->data << "  ";
 	numNodes += traverseTree(iNode->right);
+
+	
 }
 
 // destructor

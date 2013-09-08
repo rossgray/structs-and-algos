@@ -1,3 +1,5 @@
+// Implementation of a simple hash table using a linear hash function and
+// chaining using linked lists 
 
 #include <string>
 #include <cmath>
@@ -62,6 +64,13 @@ hashTable<T>::~hashTable()
 }
 
 
+template <> int hashTable<int>::hash(const int& iData)
+{
+    // hash key using simple linear hashing
+    return iData % size;
+    
+}
+
 
 template <> int hashTable<std::string>::hash(const std::string& iData)
 {
@@ -79,8 +88,7 @@ template <> int hashTable<std::string>::hash(const std::string& iData)
 		}
 		strInt += pow(128, i)*charInt;
 	}
-	/*std::cout << "strInt = " << strInt << std::endl;
-	std::cout << "hashing to " << strInt % size << std::endl;*/
+
 	return strInt % size;
     
 }

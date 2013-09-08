@@ -23,10 +23,9 @@ int main()
 	tree.insertNode(20);
 	tree.traverseTree(tree.root);
 
-	BST<int>::Node<int>* toDel = tree.findNode(2);
+	Node<int>* toDel = tree.findNode(2);
 	tree.deleteNode(toDel);
 	tree.traverseTree(tree.root);
-
 
 	return 0;
 }

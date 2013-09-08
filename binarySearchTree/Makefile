@@ -1,5 +1,5 @@
-treeTest:
+TreeTest:
 	g++ TreeTest.cpp -o treeTest
 
-clean:
-	rm -f treeTest.o treeTest
+kth_largest:
+	g++ kth_largest.cpp -o kth_largest
